@@ -8,7 +8,7 @@ st.title("Gemini Chat App")
 genai.configure(api_key=st.secrets["GOOGLE_API_KEY"])
 
 # モデルの初期化（最新の1.5-flashを指定）
-model = genai.GenerativeModel(model_name='models/gemini-1.5-flash')
+model = genai.GenerativeModel(model_name='models/gemini-2.5-flash')
 
 # チャット履歴の初期化
 if "messages" not in st.session_state:
@@ -34,3 +34,4 @@ if prompt := st.chat_input("メッセージを入力してください"):
         except Exception as e:
 
             st.error(f"エラーが発生しました: {e}")
+
