@@ -21,23 +21,8 @@ system_instruction_text = load_file("instructions.txt")
 # 2. 資料（campus_data.txt）を読み込む
 campus_data = load_file("campus_data.txt")
 
-# 指示と資料を合体させる
-full_instruction = f"""
-{system_instruction_text}
-
-【資料：Campus Data】
-{campus_data}
-"""
-
-   8 with st.expander("現在の設定を確認する"):                                
-
-     9 │   st.write("【指示ファイルの中身】")                                   
-
-  ❱ 10 │   st.code(load_file("instructions.txt"))                               
-
-    11 │   st.write("【資料ファイルの中身】")                                   
-
-    12 │   st.code(load_file("campus_data.txt"))   
+# 指示と資料を合体させる（ここを修正しました）
+full_instruction = f"{system_instruction_text}\n\n【資料：Campus Data】\n{campus_data}"
 
 # モデルの初期化（最新の1.5-flashを指定）
 model = genai.GenerativeModel(model_name='models/gemini-2.5-flash')
@@ -66,6 +51,7 @@ if prompt := st.chat_input("メッセージを入力してください"):
         except Exception as e:
 
             st.error(f"エラーが発生しました: {e}")
+
 
 
 
