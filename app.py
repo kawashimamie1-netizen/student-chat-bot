@@ -48,7 +48,7 @@ if prompt := st.chat_input("メッセージを入力してください"):
         try:
             # 資料(Knowledge)とユーザーの質問を組み合わせてプロンプトを作成
             # 「以下の資料に基づいて答えてください」という指示を添えるのが一般的です
-            combined_prompt = f"""以下の資料（キャンパスデータ）の内容を知識として参照し、ユーザーの質問に答えてください。
+            combined_prompt = f"""以下の資料（キャンパスデータ）の内容を知識として参照し、ユーザーの質問に答えてください
 
 # --- 修正箇所：AIの回答生成部分 ---
 with st.chat_message("assistant"):
@@ -56,7 +56,7 @@ with st.chat_message("assistant"):
         # 1. 役割と資料を明確に区切る構造化プロンプト
         structured_prompt = f"""
 # 厳守事項
-必ず以下の資料の内容のみを使用して回答してください。資料にないことは「不明」と答えてください。
+必ず以下の資料の内容のみを使用して回答してください。資料にないことは「不明」と答えてください
 
 # 資料
 {campus_knowledge}
@@ -75,4 +75,5 @@ with st.chat_message("assistant"):
         
         st.markdown(response.text)
         st.session_state.messages.append({"role": "assistant", "content": response.text})
+
 
