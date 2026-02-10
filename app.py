@@ -4,14 +4,6 @@ import google.generativeai as genai
 # タイトル
 st.title("Gemini Chat App")
 
-# --- 確認用コード（後で消してOK） ---
-with st.expander("現在の設定を確認する"):
-    st.write("【指示ファイルの中身】")
-    st.code(load_file("instructions.txt"))
-    st.write("【資料ファイルの中身】")
-    st.code(load_file("campus_data.txt"))
-    
-
 # APIキーの設定（Secretsから読み込み）
 genai.configure(api_key=st.secrets["GOOGLE_API_KEY"])
 
@@ -64,6 +56,7 @@ if prompt := st.chat_input("メッセージを入力してください"):
         except Exception as e:
 
             st.error(f"エラーが発生しました: {e}")
+
 
 
 
