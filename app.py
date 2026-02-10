@@ -5,7 +5,7 @@ st.title("Gemini Chat App")
 
 # Streamlitの「Secrets」からAPIキーを取得
 genai.configure(api_key=st.secrets["GOOGLE_API_KEY"])
-model = genai.GenerativeModel('gemini-1.5-flash')
+model = genai.GenerativeModel('gemini-3-flash')
 
 if "messages" not in st.session_state:
     st.session_state.messages = []
@@ -24,4 +24,5 @@ if prompt := st.chat_input("メッセージを入力してください"):
         st.markdown(response.text)
 
     st.session_state.messages.append({"role": "assistant", "content": response.text})
+
 
