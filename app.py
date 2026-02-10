@@ -56,9 +56,9 @@ with st.chat_message("assistant"):
         # 1. 役割と資料を明確に区切る構造化プロンプト
         structured_prompt = f"""
 # 厳守事項
-必ず以下の【資料】の内容のみを使用して回答してください。資料にないことは「不明」と答えてください。
+必ず以下の資料の内容のみを使用して回答してください。資料にないことは「不明」と答えてください。
 
-# 【資料】
+# 資料
 {campus_knowledge}
 
 # ユーザーの質問
@@ -75,3 +75,4 @@ with st.chat_message("assistant"):
         
         st.markdown(response.text)
         st.session_state.messages.append({"role": "assistant", "content": response.text})
+
