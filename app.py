@@ -50,17 +50,28 @@ if prompt := st.chat_input("メッセージを入力してください"):
             # 「以下の資料に基づいて答えてください」という指示を添えるのが一般的です
             combined_prompt = f"""以下の資料（キャンパスデータ）の内容を知識として参照し、ユーザーの質問に答えてください。
 
-【資料】
+# --- 修正箇所：AIの回答生成部分 ---
+with st.chat_message("assistant"):
+    try:
+        # 1. 役割と資料を明確に区切る構造化プロンプト
+        structured_prompt = f"""
+# 厳守事項
+必ず以下の【資料】の内容のみを使用して回答してください。資料にないことは「不明」と答えてください。
+
+# 【資料】
 {campus_knowledge}
 
----
-【ユーザーの質問】
-{prompt}"""
-
-            # 生成（履歴を含める場合は chat_session を使いますが、シンプルに資料を添えて回答させる形です）
-            response = model.generate_content(combined_prompt)
-            
-            st.markdown(response.text)
-            st.session_state.messages.append({"role": "assistant", "content": response.text})
-        except Exception as e:
-            st.error(f"エラーが発生しました: {e}")
+# ユーザーの質問
+{prompt}
+"""
+        # 2. 生成時に「温度（Temperature）」を低く設定して、勝手な推測を抑える
+        # model.generate_content の引数に generation_config を追加
+        response = model.generate_content(
+            structured_prompt,
+            generation_config=genai.types.GenerationConfig(
+                temperature=0.0,  # 0に近いほど、資料に忠実になります
+            )
+        )
+        
+        st.markdown(response.text)
+        st.session_state.messages.append({"role": "assistant", "content": response.text})
