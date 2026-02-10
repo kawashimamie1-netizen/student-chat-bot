@@ -7,15 +7,21 @@ st.title("Gemini Chat App")
 # APIキーの設定（Secretsから読み込み）
 genai.configure(api_key=st.secrets["GOOGLE_API_KEY"])
 
-# 指示（システム命令）の組み立て
-instruction = f"""
-あなたは大学の受付窓口係です。
-以下の資料（Campus Data）にある情報のみに基づいて、丁寧かつ正確に回答してください。
-資料に記載がない事項については、「分かりかねます」とお答えください。
+# --- ファイル読み込み関数 ---
+def load_file(file_name):
+    try:
+        with open(file_name, "r", encoding="utf-8") as f:
+            return f.read()
+    except FileNotFoundError:
+        return ""
 
-【資料：Campus Data】
-{campus_data}
-"""
+# 1. 指示と資料を読み込む
+instructions = load_file("instructions.txt")
+campus_data = load_file("campus_data.txt")
+
+# 2. 指示と資料を正しく合体させる
+full_instruction = f"{instructions}\n\n【資料：Campus Data】\n{campus_data}"
+
 # モデルの初期化（最新の1.5-flashを指定）
 model = genai.GenerativeModel(model_name='models/gemini-2.5-flash')
 
@@ -43,6 +49,7 @@ if prompt := st.chat_input("メッセージを入力してください"):
         except Exception as e:
 
             st.error(f"エラーが発生しました: {e}")
+
 
 
 
