@@ -25,7 +25,7 @@ campus_knowledge = load_file("campus_data.txt")
 # モデルの初期化
 # instructions.txt の内容をシステム命令として固定
 model = genai.GenerativeModel(
-    model_name='gemini-2.5-flash',
+    model_name='gemini-2.5-flash-lite',
     system_instruction=system_instruction
 )
 
@@ -76,3 +76,4 @@ if prompt := st.chat_input("メッセージを入力してください"):
             
         except Exception as e:
             st.error(f"エラーが発生しました: {e}")
+
