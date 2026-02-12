@@ -2,7 +2,7 @@ import streamlit as st
 import google.generativeai as genai
 
 # タイトル
-st.title("Gemini Chat App")
+st.title("1-10号館窓口")
 
 # APIキーの設定
 genai.configure(api_key=st.secrets["GOOGLE_API_KEY"])
@@ -76,4 +76,5 @@ if prompt := st.chat_input("メッセージを入力してください"):
             
         except Exception as e:
             st.error(f"エラーが発生しました: {e}")
+
 
