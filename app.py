@@ -25,7 +25,7 @@ campus_knowledge = load_file("kit_campusguide2026_rag.txt")
 # モデルの初期化
 # instructions.txt の内容をシステム命令として固定
 model = genai.GenerativeModel(
-    model_name='gemini-2.5-flash-lite',
+    model_name='gemini-3.5-flash-lite',
     system_instruction=system_instruction
 )
 
