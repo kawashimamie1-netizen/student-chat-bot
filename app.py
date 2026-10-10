@@ -2,8 +2,8 @@ import streamlit as st
 import google.generativeai as genai
 
 # タイトル
-st.title("1-10号館窓口🍰")
-
+st.title("🏫キャンパス案内窓口🏫")
+st.write("このチャットボットは１分に１回程度回答し、頻度が高いとエラーになります")
 # APIキーの設定
 genai.configure(api_key=st.secrets["GOOGLE_API_KEY"])
 
