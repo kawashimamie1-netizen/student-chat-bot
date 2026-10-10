@@ -2,7 +2,7 @@ import streamlit as st
 import google.generativeai as genai
 
 # タイトル
-st.title("1-10号館窓口🍰")
+st.title("キャンパス2026窓口🏫")
 
 # APIキーの設定
 genai.configure(api_key=st.secrets["GOOGLE_API_KEY"])
