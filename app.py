@@ -2,7 +2,7 @@ import streamlit as st
 import google.generativeai as genai
 
 # タイトル
-st.title("1-10号館窓口")
+st.title("1-10号館窓口🍰")
 
 # APIキーの設定
 genai.configure(api_key=st.secrets["GOOGLE_API_KEY"])
@@ -20,7 +20,7 @@ def load_file(filename):
 system_instruction = load_file("instructions.txt")
 
 # 2. 資料 (Knowledge) の読み込み
-campus_knowledge = load_file("campus_data.txt")
+campus_knowledge = load_file("kit_campusguide2026_rag.txt")
 
 # モデルの初期化
 # instructions.txt の内容をシステム命令として固定
